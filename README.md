@@ -209,6 +209,7 @@ launchpad/
 │   │   ├── ship.md               # /ship - Execute changes (voice-friendly)
 │   │   ├── queue.md              # /queue - Save tasks for later
 │   │   ├── burn.md               # /burn - Process queued tasks
+│   │   ├── reboot.md             # /reboot - Resume interrupted work
 │   │   ├── build.md              # /build - Compile the app
 │   │   ├── install.md            # /install - Deploy to device
 │   │   ├── run.md                # /run - Build, install, launch
@@ -239,6 +240,7 @@ launchpad/
 | `/ship <request>` | 🚀 Execute changes, document, and commit (voice-friendly) |
 | `/queue <request>` | 📋 Save task for later when AI is busy (voice-friendly) |
 | `/burn` | 🔥 Execute all queued tasks like a rocket burn |
+| `/reboot` | 🔄 Resume interrupted work from progress logs |
 | `/build` | 🔨 Build the Android app |
 | `/build clean` | 🧹 Clean build from scratch |
 | `/install` | 📲 Build and install to device/emulator |

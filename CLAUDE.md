@@ -45,6 +45,7 @@ launchpad/
 │   │   ├── ship.md               # /ship - Change execution (voice-friendly)
 │   │   ├── queue.md              # /queue - Task queue (save for later)
 │   │   ├── burn.md               # /burn - Process queued tasks
+│   │   ├── reboot.md             # /reboot - Resume interrupted work
 │   │   ├── build.md              # /build - Compile app
 │   │   ├── install.md            # /install - Deploy to device
 │   │   ├── run.md                # /run - Build, install, launch
@@ -84,6 +85,7 @@ launchpad/
 | `/ship` | **Change Execution** - Voice-friendly command to implement changes, document them, and commit. Example: `/ship add dark mode toggle` |
 | `/queue` | **Task Queue** - Save a task for later when AI is busy. Example: `/queue add error handling` |
 | `/burn` | **Process Queue** - Execute all queued tasks like a rocket burn. |
+| `/reboot` | **Resume Work** - Continue interrupted sessions from progress logs. |
 
 ### Build & Deploy
 
