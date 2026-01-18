@@ -1,5 +1,6 @@
 package com.example.launchpad.ui.screens.commands
 
+import android.content.Context
 import androidx.compose.animation.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
@@ -7,6 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
@@ -15,6 +17,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -22,15 +25,41 @@ import androidx.compose.ui.unit.dp
 import com.example.launchpad.data.model.Command
 import com.example.launchpad.data.model.CommandRepository
 import com.example.launchpad.data.model.KeyBehavior
+import java.io.BufferedReader
+import java.io.InputStreamReader
+
+/**
+ * Reads a command source file from assets
+ */
+private fun readCommandSource(context: Context, fileName: String): String? {
+    return try {
+        context.assets.open("commands/$fileName").use { inputStream ->
+            BufferedReader(InputStreamReader(inputStream)).use { reader ->
+                reader.readText()
+            }
+        }
+    } catch (e: Exception) {
+        null
+    }
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CommandDetailScreen(
     commandName: String,
-    onBackClick: () -> Unit,
-    rawSource: String? = null
+    onBackClick: () -> Unit
 ) {
     val command = CommandRepository.getByName(commandName)
+    val context = LocalContext.current
+
+    // Load source from assets when sourceFileName is available
+    val rawSource by remember(command?.sourceFileName) {
+        mutableStateOf(
+            command?.sourceFileName?.let { fileName ->
+                readCommandSource(context, fileName)
+            }
+        )
+    }
 
     if (command == null) {
         Scaffold(
@@ -388,7 +417,7 @@ private fun SourceTab(rawSource: String?, sourceFileName: String?) {
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
                 )
                 Text(
-                    text = "Raw source not loaded in this build.",
+                    text = "Unable to load source file.",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f)
                 )
@@ -397,37 +426,60 @@ private fun SourceTab(rawSource: String?, sourceFileName: String?) {
         return
     }
 
-    LazyColumn(
-        contentPadding = PaddingValues(16.dp)
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
     ) {
-        item {
-            if (sourceFileName != null) {
-                Text(
-                    text = ".claude/commands/$sourceFileName",
-                    style = MaterialTheme.typography.labelMedium,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
-                    modifier = Modifier.padding(bottom = 8.dp)
-                )
-            }
-        }
-
-        item {
+        // Header with file path
+        if (sourceFileName != null) {
             Surface(
                 modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(12.dp),
-                color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
+                shape = RoundedCornerShape(8.dp),
+                color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.3f)
             ) {
-                Box(
-                    modifier = Modifier
-                        .horizontalScroll(rememberScrollState())
-                        .padding(16.dp)
+                Row(
+                    modifier = Modifier.padding(12.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
+                    Icon(
+                        imageVector = Icons.Default.Description,
+                        contentDescription = null,
+                        modifier = Modifier.size(20.dp),
+                        tint = MaterialTheme.colorScheme.primary
+                    )
                     Text(
-                        text = rawSource,
+                        text = ".claude/commands/$sourceFileName",
+                        style = MaterialTheme.typography.labelMedium,
                         fontFamily = FontFamily.Monospace,
-                        style = MaterialTheme.typography.bodySmall
+                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
                     )
                 }
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+        }
+
+        // Source content with horizontal and vertical scroll
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f),
+            shape = RoundedCornerShape(12.dp),
+            color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
+        ) {
+            Box(
+                modifier = Modifier
+                    .horizontalScroll(rememberScrollState())
+                    .verticalScroll(rememberScrollState())
+                    .padding(16.dp)
+            ) {
+                Text(
+                    text = rawSource,
+                    fontFamily = FontFamily.Monospace,
+                    style = MaterialTheme.typography.bodySmall,
+                    lineHeight = MaterialTheme.typography.bodySmall.lineHeight * 1.4
+                )
             }
         }
     }
