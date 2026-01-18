@@ -140,6 +140,7 @@ You don't need any documentation prepared — Blueprint's interactive questionna
 |---------|---------|-------------|
 | `/blueprint` | **Product Ideation** | Define your app concept, features, and requirements |
 | `/forge` | **MVP Generation** | Build your complete working prototype |
+| `/ship` | **Change Execution** | Make changes, document, and commit in one command |
 
 **Blueprint** is for ideation and context gathering. It works great in both scenarios:
 - **With product docs**: Analyzes your documentation, identifies gaps, and asks targeted questions to fill them in
@@ -148,6 +149,8 @@ You don't need any documentation prepared — Blueprint's interactive questionna
 Either way, Blueprint ensures Claude has complete context about your app before building begins.
 
 **Forge** is for building — once your vision is defined, it creates a complete MVP proposal, reviews it with you, and builds the entire working app.
+
+**Ship** is for ongoing changes — voice-friendly command that implements your request, documents it, and commits. Say "Ship add a login screen" and it happens.
 
 ---
 
@@ -201,10 +204,12 @@ launchpad/
 │
 ├── .claude/
 │   ├── commands/                 # Claude Code commands
+│   │   ├── blueprint.md          # /blueprint - Initialize your project
+│   │   ├── forge.md              # /forge - Build your MVP
+│   │   ├── ship.md               # /ship - Execute changes (voice-friendly)
 │   │   ├── build.md              # /build - Compile the app
 │   │   ├── install.md            # /install - Deploy to device
 │   │   ├── run.md                # /run - Build, install, launch
-│   │   ├── blueprint.md            # /blueprint - Initialize your project
 │   │   └── execute-prompt.md     # /execute-prompt - Run prompt files
 │   │
 │   ├── skills/                   # Claude Code skills
@@ -229,6 +234,7 @@ launchpad/
 |---------|-------------|
 | `/blueprint` | 📐 Design your product vision and create project foundation |
 | `/forge` | 🔥 Generate and build your complete MVP |
+| `/ship <request>` | 🚀 Execute changes, document, and commit (voice-friendly) |
 | `/build` | 🔨 Build the Android app |
 | `/build clean` | 🧹 Clean build from scratch |
 | `/install` | 📲 Build and install to device/emulator |

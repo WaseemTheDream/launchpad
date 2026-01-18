@@ -42,6 +42,7 @@ launchpad/
 │   ├── commands/                 # Claude Code slash commands
 │   │   ├── blueprint.md            # /blueprint - Product ideation
 │   │   ├── forge.md              # /forge - MVP generation
+│   │   ├── ship.md               # /ship - Change execution (voice-friendly)
 │   │   ├── build.md              # /build - Compile app
 │   │   ├── install.md            # /install - Deploy to device
 │   │   ├── run.md                # /run - Build, install, launch
@@ -78,6 +79,7 @@ launchpad/
 |---------|---------|
 | `/blueprint` | **Product Ideation** - Define app concept through interactive questionnaire. Works with or without existing product docs. Creates context files in `.claude/context/`. |
 | `/forge` | **MVP Generation** - Generate MVP proposal, review with user, build complete working prototype. Uses Ultrathink for thorough analysis. |
+| `/ship` | **Change Execution** - Voice-friendly command to implement changes, document them, and commit. Example: `/ship add dark mode toggle` |
 
 ### Build & Deploy
 
@@ -182,9 +184,9 @@ Always read these files before implementing features to maintain consistency wit
 
 1. **User runs `/blueprint`** → Ideation, creates context files
 2. **User runs `/forge`** → MVP proposal, builds complete app
-3. **User iterates** → Natural language requests to add features
+3. **User runs `/ship <request>`** → Make changes, document, and commit (voice-friendly)
 4. **Use `/run`** → Test changes on emulator
-5. **Use commit skill** → Save progress with numbered commits
+5. **Iterate** → Continue with `/ship` for ongoing development
 
 ---
 
