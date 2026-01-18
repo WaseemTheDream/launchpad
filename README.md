@@ -77,7 +77,9 @@ Whether you're prototyping a new idea, building an MVP, or creating a full-featu
 
 **Linux**
 
-🚧 Coming Soon
+✅ Available
+
+[Setup Guide](./ENVIRONMENT_SETUP_LINUX.md)
 
 </td>
 </tr>
