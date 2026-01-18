@@ -55,7 +55,7 @@ object CommandRepository {
         ),
         Command(
             name = "/ship",
-            description = "Voice-friendly command to implement changes, document, and commit.",
+            description = "Autonomous changes — implement, document, and commit in one command.",
             icon = Icons.Default.RocketLaunch,
             usage = "/ship <request>",
             examples = listOf(
@@ -67,6 +67,57 @@ object CommandRepository {
                 CommandOption("--no-commit", "Make changes without committing"),
                 CommandOption("--no-doc", "Skip documentation"),
                 CommandOption("--dry-run", "Preview without changes")
+            ),
+            category = CommandCategory.DEVELOPMENT
+        ),
+        Command(
+            name = "/pilot",
+            description = "Interactive development with user present for testing before commit.",
+            icon = Icons.Default.Flight,
+            usage = "/pilot <request>",
+            examples = listOf(
+                "/pilot add settings screen",
+                "/pilot redesign home page",
+                "/pilot implement auth flow"
+            ),
+            options = listOf(
+                CommandOption("Discuss", "Claude asks clarifying questions"),
+                CommandOption("Build", "App is built and installed for testing"),
+                CommandOption("Verify", "User tests and approves changes")
+            ),
+            category = CommandCategory.DEVELOPMENT
+        ),
+        Command(
+            name = "/land",
+            description = "Commit pending changes from a /pilot session.",
+            icon = Icons.Default.FlightLand,
+            usage = "/land [session_id]",
+            examples = listOf(
+                "/land",
+                "/land pilot_0018_20260117",
+                "/land --no-push"
+            ),
+            options = listOf(
+                CommandOption("session_id", "Specific pilot session to land"),
+                CommandOption("--no-push", "Commit without pushing")
+            ),
+            category = CommandCategory.DEVELOPMENT
+        ),
+        Command(
+            name = "/flight-plan",
+            description = "Strategic planning with deep brainstorming for complex features.",
+            icon = Icons.Default.Map,
+            usage = "/flight-plan <idea>",
+            examples = listOf(
+                "/flight-plan add user authentication",
+                "/flight-plan --file requirements.md",
+                "/flight-plan list"
+            ),
+            options = listOf(
+                CommandOption("--file", "Plan from requirements file"),
+                CommandOption("--prompt", "Plan from existing prompt"),
+                CommandOption("list", "Show all flight plans"),
+                CommandOption("execute", "Execute a specific plan")
             ),
             category = CommandCategory.DEVELOPMENT
         ),

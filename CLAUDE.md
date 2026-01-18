@@ -42,8 +42,11 @@ launchpad/
 │   ├── commands/                 # Claude Code slash commands
 │   │   ├── blueprint.md          # /blueprint - Product ideation
 │   │   ├── forge.md              # /forge - MVP generation
-│   │   ├── ship.md               # /ship - Change execution (voice-friendly)
-│   │   ├── queue.md              # /queue - Task queue (save for later)
+│   │   ├── ship.md               # /ship - Autonomous changes
+│   │   ├── pilot.md              # /pilot - Interactive development
+│   │   ├── land.md               # /land - Commit pilot changes
+│   │   ├── flight-plan.md        # /flight-plan - Strategic planning
+│   │   ├── queue.md              # /queue - Task queue
 │   │   ├── burn.md               # /burn - Process queued tasks
 │   │   ├── reboot.md             # /reboot - Resume interrupted work
 │   │   ├── build.md              # /build - Compile app
@@ -82,7 +85,10 @@ launchpad/
 |---------|---------|
 | `/blueprint` | **Product Ideation** - Define app concept through interactive questionnaire. Works with or without existing product docs. Creates context files in `.claude/context/`. |
 | `/forge` | **MVP Generation** - Generate MVP proposal, review with user, build complete working prototype. Uses Ultrathink for thorough analysis. |
-| `/ship` | **Change Execution** - Voice-friendly command to implement changes, document them, and commit. Example: `/ship add dark mode toggle` |
+| `/ship` | **Autonomous Changes** - Voice-friendly command to implement changes, document, and commit. Example: `/ship add dark mode toggle` |
+| `/pilot` | **Interactive Development** - Hands-on development with user present for testing. Changes are NOT committed until `/land`. |
+| `/land` | **Commit Pilot Changes** - Commit pending changes from a `/pilot` session with documentation. |
+| `/flight-plan` | **Strategic Planning** - Deep brainstorming for complex features. Creates detailed implementation plans. |
 | `/queue` | **Task Queue** - Save a task for later when AI is busy. Example: `/queue add error handling` |
 | `/burn` | **Process Queue** - Execute all queued tasks like a rocket burn. |
 | `/reboot` | **Resume Work** - Continue interrupted sessions from progress logs. |
@@ -190,9 +196,12 @@ Always read these files before implementing features to maintain consistency wit
 
 1. **User runs `/blueprint`** → Ideation, creates context files
 2. **User runs `/forge`** → MVP proposal, builds complete app
-3. **User runs `/ship <request>`** → Make changes, document, and commit (voice-friendly)
+3. **Development options:**
+   - `/ship <request>` → Autonomous: implement, document, commit
+   - `/pilot <request>` → Interactive: build, test, then `/land` to commit
+   - `/flight-plan <idea>` → Strategic: plan first, execute later
 4. **Use `/run`** → Test changes on emulator
-5. **Iterate** → Continue with `/ship` for ongoing development
+5. **Use `/queue` + `/burn`** → Batch tasks when busy
 
 ---
 

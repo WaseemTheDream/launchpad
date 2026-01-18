@@ -140,7 +140,10 @@ You don't need any documentation prepared — Blueprint's interactive questionna
 |---------|---------|-------------|
 | `/blueprint` | **Product Ideation** | Define your app concept, features, and requirements |
 | `/forge` | **MVP Generation** | Build your complete working prototype |
-| `/ship` | **Change Execution** | Make changes, document, and commit in one command |
+| `/ship` | **Change Execution** | Autonomous changes — implement, document, commit |
+| `/pilot` | **Interactive Development** | Hands-on changes with user present for testing |
+| `/land` | **Commit Pilot Changes** | Commit pending changes from a /pilot session |
+| `/flight-plan` | **Strategic Planning** | Deep brainstorming for complex features |
 
 **Blueprint** is for ideation and context gathering. It works great in both scenarios:
 - **With product docs**: Analyzes your documentation, identifies gaps, and asks targeted questions to fill them in
@@ -150,7 +153,11 @@ Either way, Blueprint ensures Claude has complete context about your app before 
 
 **Forge** is for building — once your vision is defined, it creates a complete MVP proposal, reviews it with you, and builds the entire working app.
 
-**Ship** is for ongoing changes — voice-friendly command that implements your request, documents it, and commits. Say "Ship add a login screen" and it happens.
+**Ship** is for autonomous changes — voice-friendly command that implements your request, documents it, and commits. Say "Ship add a login screen" and it happens.
+
+**Pilot** is for interactive development — when you want to be present, answer questions, test the app, and verify changes before committing. Run `/land` when done.
+
+**Flight Plan** is for strategic planning — when you have a complex feature and want to brainstorm requirements, architecture, and implementation details before executing.
 
 ---
 
@@ -206,7 +213,10 @@ launchpad/
 │   ├── commands/                 # Claude Code commands
 │   │   ├── blueprint.md          # /blueprint - Initialize your project
 │   │   ├── forge.md              # /forge - Build your MVP
-│   │   ├── ship.md               # /ship - Execute changes (voice-friendly)
+│   │   ├── ship.md               # /ship - Autonomous changes
+│   │   ├── pilot.md              # /pilot - Interactive development
+│   │   ├── land.md               # /land - Commit pilot changes
+│   │   ├── flight-plan.md        # /flight-plan - Strategic planning
 │   │   ├── queue.md              # /queue - Save tasks for later
 │   │   ├── burn.md               # /burn - Process queued tasks
 │   │   ├── reboot.md             # /reboot - Resume interrupted work
@@ -233,14 +243,26 @@ launchpad/
 
 ## 🛠️ Available Commands
 
+### Development Commands
 | Command | Description |
 |---------|-------------|
 | `/blueprint` | 📐 Design your product vision and create project foundation |
 | `/forge` | 🔥 Generate and build your complete MVP |
-| `/ship <request>` | 🚀 Execute changes, document, and commit (voice-friendly) |
-| `/queue <request>` | 📋 Save task for later when AI is busy (voice-friendly) |
-| `/burn` | 🔥 Execute all queued tasks like a rocket burn |
-| `/reboot` | 🔄 Resume interrupted work from progress logs |
+| `/ship <request>` | 🚀 Autonomous changes — implement, document, commit |
+| `/pilot <request>` | 🛫 Interactive development with user testing before commit |
+| `/land` | 🛬 Commit pending changes from a /pilot session |
+| `/flight-plan <idea>` | 📋 Strategic planning with deep brainstorming |
+
+### Workflow Commands
+| Command | Description |
+|---------|-------------|
+| `/queue <task>` | 📥 Save task for later when AI is busy |
+| `/burn` | 🔥 Execute all queued tasks sequentially |
+| `/reboot [session]` | 🔄 Resume interrupted work from progress logs |
+
+### Build & Deploy Commands
+| Command | Description |
+|---------|-------------|
 | `/build` | 🔨 Build the Android app |
 | `/build clean` | 🧹 Clean build from scratch |
 | `/install` | 📲 Build and install to device/emulator |
