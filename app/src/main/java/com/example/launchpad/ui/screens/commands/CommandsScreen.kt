@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.OpenInNew
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -23,7 +24,9 @@ import com.example.launchpad.data.model.CommandRepository
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CommandsScreen() {
+fun CommandsScreen(
+    onCommandClick: (Command) -> Unit = {}
+) {
     var searchQuery by remember { mutableStateOf("") }
 
     Scaffold(
@@ -92,7 +95,10 @@ fun CommandsScreen() {
                         }
 
                         items(categoryCommands) { command ->
-                            CommandCard(command = command)
+                            CommandCard(
+                                command = command,
+                                onCommandClick = onCommandClick
+                            )
                         }
                     }
                 }
@@ -102,7 +108,10 @@ fun CommandsScreen() {
 }
 
 @Composable
-fun CommandCard(command: Command) {
+fun CommandCard(
+    command: Command,
+    onCommandClick: (Command) -> Unit = {}
+) {
     var expanded by remember { mutableStateOf(false) }
 
     Card(
@@ -240,6 +249,23 @@ fun CommandCard(command: Command) {
                                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
                                 )
                             }
+                        }
+                    }
+
+                    // View Details Button (only if architecture info exists)
+                    if (command.architecture != null) {
+                        Spacer(modifier = Modifier.height(16.dp))
+                        FilledTonalButton(
+                            onClick = { onCommandClick(command) },
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Filled.OpenInNew,
+                                contentDescription = null,
+                                modifier = Modifier.size(18.dp)
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text("View Architecture & Details")
                         }
                     }
                 }

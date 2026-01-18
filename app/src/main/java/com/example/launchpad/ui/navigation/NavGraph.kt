@@ -12,6 +12,7 @@ import androidx.navigation.navArgument
 import com.example.launchpad.data.model.GuideCategory
 import com.example.launchpad.ui.screens.about.AboutScreen
 import com.example.launchpad.ui.screens.commands.CommandsScreen
+import com.example.launchpad.ui.screens.commands.CommandDetailScreen
 import com.example.launchpad.ui.screens.guides.GuideDetailScreen
 import com.example.launchpad.ui.screens.guides.GuidesScreen
 import com.example.launchpad.ui.screens.home.HomeScreen
@@ -85,7 +86,25 @@ fun LaunchpadNavGraph(
         }
 
         composable(Screen.Commands.route) {
-            CommandsScreen()
+            CommandsScreen(
+                onCommandClick = { command ->
+                    navController.navigate(Screen.CommandDetail.createRoute(command.name))
+                }
+            )
+        }
+
+        composable(
+            route = Screen.CommandDetail.route,
+            arguments = listOf(
+                navArgument("commandName") { type = NavType.StringType }
+            )
+        ) { backStackEntry ->
+            val commandName = backStackEntry.arguments?.getString("commandName") ?: ""
+            val decodedName = java.net.URLDecoder.decode(commandName, "UTF-8")
+            CommandDetailScreen(
+                commandName = decodedName,
+                onBackClick = { navController.popBackStack() }
+            )
         }
 
         composable(Screen.About.route) {

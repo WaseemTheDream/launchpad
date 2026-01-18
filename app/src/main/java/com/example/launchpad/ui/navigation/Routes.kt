@@ -7,6 +7,9 @@ sealed class Screen(val route: String) {
         fun createRoute(categoryId: String) = "guide/$categoryId"
     }
     object Commands : Screen("commands")
+    object CommandDetail : Screen("command/{commandName}") {
+        fun createRoute(commandName: String) = "command/${java.net.URLEncoder.encode(commandName, "UTF-8")}"
+    }
     object About : Screen("about")
     object Settings : Screen("settings")
 }
