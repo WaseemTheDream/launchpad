@@ -251,6 +251,61 @@ launchpad/
 
 ---
 
+## ⚡ Autonomous Mode
+
+For a more hands-free development experience, you can run Claude Code with the `--dangerously-skip-permissions` flag:
+
+```bash
+claude --dangerously-skip-permissions
+```
+
+This enables Claude to execute commands, modify files, and perform actions without prompting for confirmation at each step — significantly speeding up development workflows.
+
+### ⚠️ Important Warnings
+
+> **This mode is NOT recommended for production environments.**
+
+Before using autonomous mode, understand these risks:
+
+| Risk | Description |
+|------|-------------|
+| **Irreversible Changes** | Claude can make permanent modifications to your codebase, delete files, or execute system commands without confirmation |
+| **No Safety Prompts** | You won't be asked to approve potentially destructive operations |
+| **Your Responsibility** | You are fully responsible for reviewing all changes Claude makes |
+| **Production Danger** | Never use this flag when working on live production systems where mistakes could affect real users or data |
+
+### ✅ Best Practices for Safe Usage
+
+If you choose to use autonomous mode, follow these guidelines:
+
+1. **Use Version Control** — Always have your work committed to git before starting. This gives you a safety net to revert changes.
+
+2. **Work in Isolation** — Use a development or sandbox environment, never a production system.
+
+3. **Review Changes Frequently** — Run `git diff` regularly to see what Claude has modified.
+
+4. **Keep Backups** — Ensure you have backups of any critical data or configurations.
+
+5. **Start Small** — Test autonomous mode on simple tasks before using it for complex operations.
+
+6. **Set Boundaries** — Be specific in your instructions to limit the scope of what Claude can change.
+
+### When to Use Autonomous Mode
+
+**Good use cases:**
+- Rapid prototyping in a fresh project
+- Exploring ideas in a disposable environment
+- Running repetitive tasks you've done manually before
+- Development on isolated feature branches
+
+**Avoid for:**
+- Production deployments
+- Database migrations on live data
+- Operations affecting external services
+- Any environment where mistakes are costly
+
+---
+
 ## 🤝 Contributing
 
 Contributions are welcome! If you have ideas for improving Launchpad:
