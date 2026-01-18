@@ -4,13 +4,15 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import com.example.launchpad.ui.navigation.LaunchpadBottomNavBar
+import com.example.launchpad.ui.navigation.LaunchpadNavGraph
 import com.example.launchpad.ui.theme.LaunchpadTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,30 +20,25 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            LaunchpadTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
+            val systemDarkTheme = isSystemInDarkTheme()
+            var isDarkTheme by remember { mutableStateOf(systemDarkTheme) }
+            val navController = rememberNavController()
+
+            LaunchpadTheme(darkTheme = isDarkTheme) {
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    bottomBar = {
+                        LaunchpadBottomNavBar(navController = navController)
+                    }
+                ) { innerPadding ->
+                    LaunchpadNavGraph(
+                        navController = navController,
+                        onThemeToggle = { isDarkTheme = !isDarkTheme },
+                        isDarkTheme = isDarkTheme,
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    LaunchpadTheme {
-        Greeting("Android")
     }
 }

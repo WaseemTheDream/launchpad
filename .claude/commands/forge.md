@@ -2,6 +2,42 @@
 
 Forge your vision into a fully functioning MVP prototype.
 
+---
+
+## ⚠️ DESTRUCTIVE COMMAND WARNING
+
+> **This command will replace the existing Android application code.**
+
+Forge is designed to be run **once per project** to transform the Launchpad template into your application. Running it again will:
+
+- **Delete** existing screens and UI components
+- **Overwrite** the current app implementation
+- **Reset** the codebase to build a new MVP from scratch
+
+### If you want to start over:
+
+**DO NOT re-run /forge on an existing project.** Instead:
+
+1. Clone a fresh copy of Launchpad:
+   ```bash
+   git clone https://github.com/WaseemTheDream/launchpad.git my-new-app
+   cd my-new-app
+   ```
+2. Run `/blueprint` to define your new product
+3. Run `/forge` to build it
+
+### If you're sure you want to rebuild:
+
+If you truly want to wipe the current implementation and start over, you must confirm by typing exactly:
+
+```
+/forge --confirm-destructive
+```
+
+Without this flag, Forge will check if an MVP has already been built and warn you.
+
+---
+
 ## Overview
 
 The **Forge** command takes your product vision and crafts it into a complete, working Android application. It creates a comprehensive MVP proposal, reviews it with you, incorporates your feedback, and then builds the entire prototype.
@@ -20,6 +56,45 @@ Before running this command, ensure you have:
 ---
 
 ## Instructions
+
+### Phase 0: Destructive Check
+
+**Before doing anything else**, check if this is a re-run of Forge:
+
+1. Look for indicators that Forge has been run before:
+   - Existence of multiple screen files in `app/src/main/java/.../ui/screens/`
+   - A NavGraph.kt file with multiple routes
+   - Previous forge session docs in `.claude/prompts/`
+   - Package name different from `com.example.launchpad`
+
+2. If any indicators found AND `--confirm-destructive` flag NOT present:
+   ```
+   ⚠️  FORGE ALREADY RUN
+
+   It looks like Forge has already been used to build an MVP in this project.
+   Running Forge again will DELETE the existing implementation.
+
+   Current app: {detected app name or package}
+   Screens found: {count}
+
+   Options:
+   1. To iterate on your existing app, use /ship instead
+   2. To start completely fresh, clone a new Launchpad repo
+   3. To confirm you want to rebuild, run: /forge --confirm-destructive
+
+   Aborting to protect your existing work.
+   ```
+   **Stop execution here.**
+
+3. If `--confirm-destructive` flag IS present:
+   ```
+   ⚠️  DESTRUCTIVE MODE CONFIRMED
+
+   You've confirmed you want to rebuild. The existing implementation
+   will be replaced with a new MVP.
+
+   Proceeding with Forge...
+   ```
 
 ### Phase 1: Context Loading
 
