@@ -66,7 +66,8 @@ launchpad/
 │   ├── skills/                   # Claude Code skills
 │   │   ├── app.md                # App lifecycle management
 │   │   ├── commit.md             # Intelligent commit with numbering
-│   │   └── prompt-creator.md     # Create numbered prompts
+│   │   ├── prompt-creator.md     # Create numbered prompts
+│   │   └── mobile-interaction.md # ADB-based mobile app interaction
 │   │
 │   ├── prompts/                  # Development prompts & session logs
 │   │   └── logs/                 # Execution logs
@@ -80,6 +81,8 @@ launchpad/
 ├── CLAUDE.md                     # This file - AI agent context
 ├── README.md                     # User-facing documentation
 ├── ENVIRONMENT_SETUP_WIN11.md    # Windows 11 setup guide
+├── ENVIRONMENT_SETUP_MACOS.md    # macOS setup guide
+├── ENVIRONMENT_SETUP_LINUX.md    # Linux setup guide
 ├── build.gradle.kts              # Root build config
 └── settings.gradle.kts           # Project settings
 ```
@@ -127,6 +130,7 @@ launchpad/
 | **app** | Intelligent app lifecycle management (build/install/run with error handling) |
 | **commit** | Auto-numbered commits `[NNNN]` with smart message generation |
 | **prompt-creator** | Create numbered prompt files with `0001-`, `0002-` prefixes |
+| **mobile-interaction** | Best practices for ADB-based mobile app interaction and testing |
 
 ---
 
