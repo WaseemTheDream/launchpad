@@ -506,6 +506,69 @@ Now let's create an Android emulator and run the Launchpad app on it.
 
 ---
 
+## 8. Installing Mobile MCP for Claude Code
+
+Mobile MCP is a Model Context Protocol server that enables mobile automation through Claude Code. It provides tools for device management, app operations, screen interaction, and input handling for both Android and iOS devices.
+
+### Prerequisites
+
+- **Node.js v22+** installed (see Section 3, Step 1)
+- **Claude Code** installed and authenticated (see Section 3)
+- **Android Emulator** running or physical device connected (see Section 7)
+
+### Step 1: Install Mobile MCP
+
+Open **PowerShell** or **Command Prompt** and run:
+
+```
+claude mcp add mobile-mcp -- npx -y @mobilenext/mobile-mcp@latest
+```
+
+This adds the Mobile MCP server to your Claude Code configuration.
+
+### Step 2: Verify Installation
+
+1. Close any existing Claude Code sessions
+2. Start a new Claude Code session:
+   ```
+   claude
+   ```
+3. The Mobile MCP tools will be automatically available when you have a device/emulator running
+
+### Step 3: Using Mobile MCP
+
+With an emulator running, you can ask Claude Code to:
+
+- Take screenshots of the device
+- Tap on screen elements
+- Type text into input fields
+- Scroll and swipe
+- Launch and interact with apps
+- Inspect UI elements
+
+### Example Usage
+
+Start your emulator (see Section 7), then in Claude Code:
+
+```
+claude "Take a screenshot of my emulator"
+claude "Open the Settings app and navigate to Wi-Fi"
+```
+
+### Troubleshooting
+
+**MCP server not connecting:**
+- Ensure an emulator is running or device is connected
+- Verify with: `adb devices`
+- Restart Claude Code to reload MCP servers
+
+**Node.js version error:**
+- Mobile MCP requires Node.js v22+
+- Check version: `node --version`
+- Update if needed: `winget upgrade OpenJS.NodeJS.LTS`
+
+---
+
 ## Quick Reference: Keyboard Shortcuts
 
 | Action | Shortcut |
