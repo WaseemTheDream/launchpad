@@ -2,6 +2,25 @@
 
 > Your AI-powered launchpad for rapidly building Android applications with Claude Code.
 
+<div align="center">
+
+<table>
+<tr>
+<td align="center">
+<img src="docs/screenshots/home_screen.png" width="280" alt="Home Screen"/>
+<br/>
+<sub><b>Home Screen</b></sub>
+</td>
+<td align="center">
+<img src="docs/screenshots/commands_screen.png" width="280" alt="Commands Screen"/>
+<br/>
+<sub><b>Commands Reference</b></sub>
+</td>
+</tr>
+</table>
+
+</div>
+
 ---
 
 ## What is Launchpad?
