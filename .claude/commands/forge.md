@@ -344,7 +344,119 @@ Using **Ultrathink** for each major component:
 
 ---
 
-### Phase 6: Completion
+### Phase 6: Create Forge Session Documentation
+
+Create a documentation prompt file that records the entire forge session, including the proposal, user feedback, and implementation decisions.
+
+Determine the next prompt number and create: `.claude/prompts/NNNN-forge-session-{app-name-slug}.md`
+
+```markdown
+# Forge Session: {App Name}
+
+> Session documentation for the /forge command execution
+
+## Session Info
+- **Date**: {current date/time}
+- **App Name**: {App Name}
+- **Build Mode**: {Complete / Step-by-step}
+
+## Context Loaded
+
+Summary of context files used:
+- **product-vision.md**: {key points}
+- **technical-spec.md**: {key points}
+- **feature-roadmap.md**: {key points}
+- **design-guidelines.md**: {key points}
+
+## MVP Proposal
+
+### Scope Summary
+{What was included and excluded from MVP}
+
+### Screens Proposed
+{List of screens with brief descriptions}
+
+1. **{Screen 1}**: {purpose}
+2. **{Screen 2}**: {purpose}
+...
+
+### Navigation Flow
+{Description or diagram of navigation}
+
+### Architecture Decisions
+- **Pattern**: {MVVM/Clean/etc.}
+- **DI**: {Hilt/Manual/Koin}
+- **Database**: {Room/None}
+- **Networking**: {Retrofit/Ktor/None}
+
+### Data Models
+{List of entities/models}
+
+## User Feedback & Revisions
+
+### Initial Review
+**User's response**: {Approved / Had feedback}
+
+### Feedback Received
+{If any feedback was given, document it here}
+
+**User said**: "{feedback}"
+
+### Revisions Made
+{What was changed based on feedback}
+
+- Changed: {description}
+- Added: {description}
+- Removed: {description}
+
+### Final Approval
+User approved the proposal: {Yes/No}
+
+## Implementation Summary
+
+### Files Created
+{List of all files created during the forge process}
+
+- `app/src/main/java/.../ui/screens/{Screen1}Screen.kt`
+- `app/src/main/java/.../ui/screens/{Screen2}Screen.kt`
+- `app/src/main/java/.../navigation/NavGraph.kt`
+- ...
+
+### Files Modified
+{List of files that were modified}
+
+- `app/src/main/res/values/strings.xml` - Updated app name
+- `app/build.gradle.kts` - Added dependencies
+- ...
+
+### Commits Made
+{List of commits created during this session}
+
+1. `[NNNN] feat: Set up project foundation for {App Name}`
+2. `[NNNN+1] feat: Implement navigation structure`
+3. ...
+
+## Technical Notes
+
+{Any important technical decisions, workarounds, or notes for future reference}
+
+## Session Outcome
+- **Status**: {Completed / Partial / Stopped}
+- **Screens Built**: {count}
+- **Components Created**: {count}
+- **Total Commits**: {count}
+
+## Next Steps Recommended
+{Suggestions for what to build next}
+
+1. {Recommendation 1}
+2. {Recommendation 2}
+3. {Recommendation 3}
+```
+
+---
+
+### Phase 7: Completion
 
 After MVP is built:
 

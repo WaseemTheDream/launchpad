@@ -336,7 +336,136 @@ Update the app name in `app/src/main/res/values/strings.xml`:
 
 ---
 
-### Phase 7: Commit Everything
+### Phase 7: Create Liftoff Session Documentation
+
+Create a documentation prompt file that records the entire liftoff session.
+
+Determine the next prompt number and create: `.claude/prompts/NNNN-liftoff-session-{app-name-slug}.md`
+
+```markdown
+# Liftoff Session: {App Name}
+
+> Session documentation for the /liftoff command execution
+
+## Session Info
+- **Date**: {current date/time}
+- **App Name**: {App Name}
+
+## Product Documentation Analyzed
+
+{List of files found in product-docs/ and brief summaries of each}
+
+## Interactive Questionnaire
+
+### Product Vision
+**Q: What is the name of your app?**
+A: {user's answer}
+
+**Q: Describe your app in one sentence**
+A: {user's answer}
+
+**Q: What problem does it solve?**
+A: {user's answer}
+
+**Q: What makes it unique?**
+A: {user's answer}
+
+### Target Audience
+**Q: Who are your primary users?**
+A: {user's answer}
+
+**Q: Device types?**
+A: {user's selection}
+
+**Q: Accessibility requirements?**
+A: {user's answer}
+
+### Core Features
+**Q: MVP features (3-5 must-haves)?**
+A: {user's answer}
+
+**Q: Future features?**
+A: {user's answer}
+
+**Q: Out of scope?**
+A: {user's answer}
+
+### Technical Requirements
+**Q: Authentication?**
+A: {user's selection}
+
+**Q: Data storage?**
+A: {user's selection}
+
+**Q: Offline support?**
+A: {user's selection}
+
+**Q: Backend/APIs?**
+A: {user's answer}
+
+**Q: Notifications?**
+A: {user's selection}
+
+### Design & UX
+**Q: Design style?**
+A: {user's selection}
+
+**Q: Color scheme?**
+A: {user's answer}
+
+**Q: Navigation pattern?**
+A: {user's selection}
+
+**Q: Inspiration apps?**
+A: {user's answer}
+
+### Business Context
+**Q: Monetization?**
+A: {user's selection}
+
+**Q: Timeline?**
+A: {user's answer}
+
+**Q: Compliance requirements?**
+A: {user's answer}
+
+### Additional Context
+**Q: Existing assets?**
+A: {user's answer}
+
+**Q: Team & skills?**
+A: {user's answer}
+
+**Q: Anything else?**
+A: {user's answer}
+
+## Generated Context Files
+
+The following files were created in `.claude/context/`:
+
+### product-vision.md
+{Summary of what was written}
+
+### technical-spec.md
+{Summary of what was written}
+
+### feature-roadmap.md
+{Summary of what was written}
+
+### design-guidelines.md
+{Summary of what was written}
+
+## Next Steps Chosen
+
+User selected: {their choice from the next steps options}
+
+## Session Complete
+Liftoff session completed successfully. Project initialized for {App Name}.
+```
+
+---
+
+### Phase 8: Commit Everything
 
 Use the commit skill to commit all changes:
 
