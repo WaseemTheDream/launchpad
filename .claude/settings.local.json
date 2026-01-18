@@ -14,7 +14,15 @@
       "Bash(git mv:*)",
       "Bash(move:*)",
       "Bash(\"C:\\\\Users\\\\Waz\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\python.exe\" --version)",
-      "Bash(\"C:\\\\Users\\\\Waz\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\Scripts\\\\pip.exe\" --version)"
+      "Bash(\"C:\\\\Users\\\\Waz\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\Scripts\\\\pip.exe\" --version)",
+      "Bash(git push)",
+      "Bash(adb devices:*)",
+      "Bash(.gradlew.bat:*)",
+      "Bash(cmd.exe:*)",
+      "Bash(\"C:\\\\Users\\\\Waz\\\\AndroidStudioProjects\\\\launchpad\\\\gradlew.bat\" assembleDebug)",
+      "Bash(export JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\")",
+      "Bash(\"C:\\\\Users\\\\Waz\\\\AndroidStudioProjects\\\\launchpad\\\\gradlew.bat\" installDebug)",
+      "Bash(adb shell am start:*)"
     ]
   }
 }
