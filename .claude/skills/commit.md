@@ -1,6 +1,6 @@
 # Commit
 
-Automate committing changes to the current branch with intelligent commit message generation and auto-incrementing commit numbers.
+Automate committing changes to the current branch with intelligent commit message generation, auto-incrementing commit numbers, and automatic push to remote.
 
 ## Instructions
 
@@ -67,11 +67,16 @@ Create the commit with the generated message format:
 Co-Authored-By: Claude <noreply@anthropic.com>
 ```
 
-### Step 6: Push to Remote (Optional)
+### Step 6: Push to Remote (Default: Yes)
 
-Ask the user if they want to push to remote:
-- If yes, run `git push`
-- If the branch has no upstream, run `git push -u origin {branch}`
+**By default, push to remote after committing.** This ensures changes are backed up and available.
+
+1. Check if branch has an upstream:
+   - If yes: Run `git push`
+   - If no upstream: Run `git push -u origin {branch}`
+2. Report push status to user
+
+**To skip pushing**, user can say "commit without push" or "commit --no-push".
 
 ### Step 7: Confirm Completion
 
@@ -79,7 +84,7 @@ Display:
 1. Commit number used
 2. Commit hash
 3. Summary of what was committed
-4. Push status (if pushed)
+4. Push status (pushed to {remote}/{branch})
 
 ## Commit Message Examples
 
@@ -120,7 +125,15 @@ If the user says "quick commit" or "commit now", skip asking questions and:
 1. Auto-detect the change type
 2. Generate the message automatically
 3. Commit immediately
-4. Ask about pushing
+4. Push to remote (default behavior)
+
+## Options
+
+| Option | Description |
+|--------|-------------|
+| (default) | Commit and push to remote |
+| `--no-push` | Commit without pushing |
+| `--amend` | Amend the previous commit (use sparingly) |
 
 ## Safety Checks
 
@@ -128,3 +141,7 @@ Before committing, verify:
 - Not committing sensitive files (.env, credentials, API keys)
 - Not on a protected branch that requires PR (unless user confirms)
 - No merge conflicts exist
+
+Before pushing, verify:
+- Remote is configured and accessible
+- Not force-pushing to protected branches (main/master)
