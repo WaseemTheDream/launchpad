@@ -17,9 +17,9 @@
 <sub><b>Commands Reference</b></sub>
 </td>
 <td align="center">
-<img src="docs/screenshots/command_source_screen.png" width="250" alt="Command Source"/>
+<img src="docs/screenshots/command_architecture_screen.png" width="250" alt="Command Architecture"/>
 <br/>
-<sub><b>Command Source View</b></sub>
+<sub><b>Command Architecture</b></sub>
 </td>
 </tr>
 </table>
