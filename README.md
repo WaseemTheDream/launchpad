@@ -82,13 +82,15 @@ claude
 
 ## 🎯 Adapting Launchpad to Your Idea
 
-Launchpad is designed to be **transformed into YOUR Android application**. Here's how to make it yours:
+Launchpad is designed to be **transformed into YOUR Android application**. Choose your path:
 
-### Step 1: Document Your Product Vision
+---
 
-Place your product documentation in the `product-docs/` folder. The more context you provide, the better Claude can assist you.
+### Option A: You Already Have an Idea
 
-**Suggested documents:**
+If you know what you want to build, document your vision first:
+
+**Step 1:** Place your product documentation in the `product-docs/` folder:
 
 ```
 product-docs/
@@ -101,26 +103,69 @@ product-docs/
 
 Don't worry about being perfect — even rough notes help Claude understand your vision.
 
-### Step 2: Initialize Your Project with Liftoff
-
-Once your product docs are ready, launch Claude Code and run:
+**Step 2:** Run Liftoff to initialize your project:
 
 ```
 /liftoff
 ```
 
-**The Liftoff command will:**
+Liftoff will analyze your docs, ask clarifying questions, and set everything up.
 
-1. 📖 **Analyze** your product documentation
-2. ❓ **Ask** clarifying questions about your vision
-3. 🧠 **Generate** context files for AI-assisted development
-4. 📝 **Create** an initialization prompt capturing your requirements
-5. ⚙️ **Configure** the project for your specific app
+---
+
+### Option B: You Need Help Ideating
+
+Don't have a fully formed idea yet? No problem! Just run:
+
+```
+/liftoff
+```
+
+**The Liftoff command will interactively help you:**
+
+1. 💡 **Brainstorm** your app concept through guided questions
+2. 🎯 **Define** your target audience and core features
+3. 🏗️ **Shape** technical requirements and design preferences
+4. 🧠 **Generate** context files capturing your vision
+5. 📝 **Create** an initialization prompt for your app
 6. ✅ **Commit** everything to get you started
 
-### Step 3: Build with AI Assistance
+You don't need any documentation prepared — Liftoff's interactive questionnaire will guide you through defining your entire product vision from scratch.
 
-With your project initialized, use Claude Code naturally:
+---
+
+### Understanding the Commands
+
+| Command | Purpose | When to Use |
+|---------|---------|-------------|
+| `/liftoff` | **Product Ideation** | Define your app concept, features, and requirements |
+| `/forge` | **MVP Generation** | Build your complete working prototype |
+
+**Liftoff** is for ideation — whether you have an idea or not, it helps you think through and document every aspect of your product vision.
+
+**Forge** is for building — once your vision is defined, it creates a complete MVP proposal, reviews it with you, and builds the entire working app.
+
+---
+
+### Step 3: Build Your MVP with Forge
+
+After Liftoff completes, run:
+
+```
+/forge
+```
+
+**The Forge command will:**
+
+1. 📋 **Analyze** your context files from Liftoff
+2. 🏗️ **Generate** a detailed MVP proposal (screens, architecture, data models)
+3. 👀 **Review** the proposal with you and incorporate feedback
+4. 🔥 **Build** the complete working prototype
+5. ✅ **Commit** all code with meaningful commit messages
+
+### Step 4: Iterate with AI Assistance
+
+With your MVP built, continue developing with Claude Code:
 
 ```
 "Add a login screen with email and password"
