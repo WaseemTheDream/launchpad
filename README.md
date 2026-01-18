@@ -207,6 +207,8 @@ launchpad/
 │   │   ├── blueprint.md          # /blueprint - Initialize your project
 │   │   ├── forge.md              # /forge - Build your MVP
 │   │   ├── ship.md               # /ship - Execute changes (voice-friendly)
+│   │   ├── queue.md              # /queue - Save tasks for later
+│   │   ├── burn.md               # /burn - Process queued tasks
 │   │   ├── build.md              # /build - Compile the app
 │   │   ├── install.md            # /install - Deploy to device
 │   │   ├── run.md                # /run - Build, install, launch
@@ -235,6 +237,8 @@ launchpad/
 | `/blueprint` | 📐 Design your product vision and create project foundation |
 | `/forge` | 🔥 Generate and build your complete MVP |
 | `/ship <request>` | 🚀 Execute changes, document, and commit (voice-friendly) |
+| `/queue <request>` | 📋 Save task for later when AI is busy (voice-friendly) |
+| `/burn` | 🔥 Execute all queued tasks like a rocket burn |
 | `/build` | 🔨 Build the Android app |
 | `/build clean` | 🧹 Clean build from scratch |
 | `/install` | 📲 Build and install to device/emulator |

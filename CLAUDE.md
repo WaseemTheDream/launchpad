@@ -40,9 +40,11 @@ launchpad/
 │
 ├── .claude/
 │   ├── commands/                 # Claude Code slash commands
-│   │   ├── blueprint.md            # /blueprint - Product ideation
+│   │   ├── blueprint.md          # /blueprint - Product ideation
 │   │   ├── forge.md              # /forge - MVP generation
 │   │   ├── ship.md               # /ship - Change execution (voice-friendly)
+│   │   ├── queue.md              # /queue - Task queue (save for later)
+│   │   ├── burn.md               # /burn - Process queued tasks
 │   │   ├── build.md              # /build - Compile app
 │   │   ├── install.md            # /install - Deploy to device
 │   │   ├── run.md                # /run - Build, install, launch
@@ -80,6 +82,8 @@ launchpad/
 | `/blueprint` | **Product Ideation** - Define app concept through interactive questionnaire. Works with or without existing product docs. Creates context files in `.claude/context/`. |
 | `/forge` | **MVP Generation** - Generate MVP proposal, review with user, build complete working prototype. Uses Ultrathink for thorough analysis. |
 | `/ship` | **Change Execution** - Voice-friendly command to implement changes, document them, and commit. Example: `/ship add dark mode toggle` |
+| `/queue` | **Task Queue** - Save a task for later when AI is busy. Example: `/queue add error handling` |
+| `/burn` | **Process Queue** - Execute all queued tasks like a rocket burn. |
 
 ### Build & Deploy
 
