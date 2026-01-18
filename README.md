@@ -262,7 +262,12 @@ launchpad/
 │   │   ├── build.md              # /build - Compile the app
 │   │   ├── install.md            # /install - Deploy to device
 │   │   ├── run.md                # /run - Build, install, launch
+│   │   ├── release.md            # /release - Build signed APK
 │   │   └── execute-prompt.md     # /execute-prompt - Run prompt files
+│   │
+│   ├── android-keystore/         # Release signing (git-ignored)
+│   │   ├── release.jks           # Your keystore file
+│   │   └── keystore.properties   # Keystore credentials
 │   │
 │   ├── skills/                   # Claude Code skills
 │   │   ├── app.md                # App lifecycle management
@@ -306,7 +311,100 @@ launchpad/
 | `/build clean` | 🧹 Clean build from scratch |
 | `/install` | 📲 Build and install to device/emulator |
 | `/run` | ▶️ Build, install, and launch the app |
+| `/release` | 📦 Build signed release APK |
 | `/execute-prompt <file>` | 📜 Execute a prompt file with logging |
+
+---
+
+## 📦 Release Builds
+
+When you're ready to distribute your app, you'll need to create a signed release APK. This section covers keystore setup for both new and experienced Android developers.
+
+### Quick Start
+
+```
+/release
+```
+
+The `/release` command will guide you through keystore setup if needed, then build your signed APK.
+
+---
+
+### Option A: I Have an Existing Keystore
+
+If you already have a `.jks` keystore file from previous Android development:
+
+**Step 1: Copy your keystore**
+```bash
+# Copy your existing keystore to the project
+cp /path/to/your/existing.jks .claude/android-keystore/release.jks
+```
+
+**Step 2: Create credentials file**
+
+Create `.claude/android-keystore/keystore.properties`:
+```properties
+storeFile=../.claude/android-keystore/release.jks
+storePassword=your_keystore_password
+keyAlias=your_key_alias
+keyPassword=your_key_password
+```
+
+**Step 3: Build release**
+```
+/release
+```
+
+---
+
+### Option B: I Need to Create a Keystore
+
+If this is your first Android app or you need a new keystore:
+
+**Step 1: Generate keystore**
+
+Open a terminal and run:
+```bash
+keytool -genkey -v -keystore .claude/android-keystore/release.jks -keyalg RSA -keysize 2048 -validity 10000 -alias release
+```
+
+You'll be prompted for:
+- **Keystore password**: Choose a strong password (you'll need this forever!)
+- **Personal info**: Name, organization, etc. (can use defaults)
+- **Key password**: Can be the same as keystore password
+
+**Step 2: Create credentials file**
+
+Create `.claude/android-keystore/keystore.properties`:
+```properties
+storeFile=../.claude/android-keystore/release.jks
+storePassword=your_chosen_password
+keyAlias=release
+keyPassword=your_key_password
+```
+
+**Step 3: Build release**
+```
+/release
+```
+
+---
+
+### Security Best Practices
+
+| Practice | Description |
+|----------|-------------|
+| **Back up your keystore** | Store your `.jks` file in a secure location (cloud backup, USB drive). If lost, you cannot update your app on Play Store. |
+| **Never commit credentials** | Keystore files are protected by both the root `.gitignore` and `.claude/android-keystore/.gitignore`. Never manually add these files to git. |
+| **Use strong passwords** | Your keystore protects your app's identity. Use passwords you won't forget but others can't guess. |
+| **Document your credentials** | Store your alias and passwords securely (password manager recommended). |
+
+### Output Location
+
+After a successful release build, your signed APK will be at:
+```
+app/build/outputs/apk/release/app-release.apk
+```
 
 ---
 

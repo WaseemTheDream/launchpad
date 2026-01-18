@@ -13,3 +13,9 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Android Keystore - NEVER commit these to version control
+.claude/android-keystore/*.jks
+.claude/android-keystore/*.keystore
+.claude/android-keystore/keystore.properties
+.claude/android-keystore/signing.properties

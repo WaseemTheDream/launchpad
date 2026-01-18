@@ -52,7 +52,11 @@ launchpad/
 │   │   ├── build.md              # /build - Compile app
 │   │   ├── install.md            # /install - Deploy to device
 │   │   ├── run.md                # /run - Build, install, launch
+│   │   ├── release.md            # /release - Build signed APK
 │   │   └── execute-prompt.md     # /execute-prompt - Run prompt files
+│   │
+│   ├── android-keystore/         # Release signing (git-ignored)
+│   │   └── keystore.properties   # Keystore credentials
 │   │
 │   ├── skills/                   # Claude Code skills
 │   │   ├── app.md                # App lifecycle management
@@ -101,6 +105,7 @@ launchpad/
 | `/build clean` | Clean build from scratch |
 | `/install` | Build and install to connected device/emulator |
 | `/run` | Build, install, and launch the app |
+| `/release` | Build signed release APK for distribution |
 
 ### Automation
 

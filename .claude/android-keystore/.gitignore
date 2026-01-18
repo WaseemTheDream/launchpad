@@ -1,0 +1,20 @@
+# Android Keystore Security
+# NEVER commit keystore files or credentials to version control
+
+# Keystore files
+*.jks
+*.keystore
+
+# Keystore properties (contains passwords)
+keystore.properties
+signing.properties
+
+# Any backup files
+*.bak
+*.backup
+
+# Keep this .gitignore file
+!.gitignore
+
+# Keep the README for instructions
+!README.md
