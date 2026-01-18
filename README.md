@@ -83,17 +83,35 @@ Whether you're prototyping a new idea, building an MVP, or creating a full-featu
 
 ### Quick Start
 
+**Option 1: Clone (Exploring / Learning)**
 ```bash
-# 1. Clone the repository
+# Clone to explore Launchpad's capabilities
 git clone https://github.com/WaseemTheDream/launchpad.git
 cd launchpad
+```
 
-# 2. Set up your environment (see guides above)
+**Option 2: Fork & Rename (You Know Your App Name)**
 
-# 3. Open in Android Studio
-# File → Open → Select the launchpad folder
+If you already know what you're building, fork the repository and name it after your app:
 
-# 4. Start Claude Code in the integrated terminal
+1. Click **Fork** on [github.com/WaseemTheDream/launchpad](https://github.com/WaseemTheDream/launchpad)
+2. Name the new repository after your app (e.g., `fittrack`, `recipe-vault`, `budgetwise`)
+3. Clone your fork:
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/your-app-name.git
+   cd your-app-name
+   ```
+
+> **Why fork?** Your repository name becomes your project identity. When you run `/forge`, it will rename the Android package to match. Starting with the right name means cleaner git history and easier deployment.
+
+**Then continue with:**
+```bash
+# Set up your environment (see guides above)
+
+# Open in Android Studio
+# File → Open → Select the project folder
+
+# Start Claude Code in the integrated terminal
 claude
 ```
 
@@ -105,9 +123,11 @@ Launchpad is designed to be **transformed into YOUR Android application**. Choos
 
 ---
 
-### Option A: You Already Have an Idea
+### Option A: You Already Have an Idea (Recommended: Fork First)
 
-If you know what you want to build, document your vision first:
+If you know what you want to build:
+
+**Step 0 (Optional but Recommended):** If you haven't already, fork this repository and name it after your app. This gives you a clean starting point with the right project name.
 
 **Step 1:** Place your product documentation in the `product-docs/` folder:
 
