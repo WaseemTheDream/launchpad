@@ -8,7 +8,13 @@
       "Bash(winget:*)",
       "Bash(\"C:\\\\Program Files\\\\GitHub CLI\\\\gh.exe\" auth status)",
       "Bash(\"C:\\\\Program Files\\\\GitHub CLI\\\\gh.exe\" auth login --web --git-protocol https)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(\"C:\\\\Program Files\\\\GitHub CLI\\\\gh.exe\" repo create launchpad --public --source=. --remote=origin --push)",
+      "Bash(git mv:*)",
+      "Bash(move:*)",
+      "Bash(\"C:\\\\Users\\\\Waz\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\python.exe\" --version)",
+      "Bash(\"C:\\\\Users\\\\Waz\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\Scripts\\\\pip.exe\" --version)"
     ]
   }
 }
