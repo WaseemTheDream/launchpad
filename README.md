@@ -269,6 +269,11 @@ launchpad/
 │   │   ├── release.jks           # Your keystore file
 │   │   └── keystore.properties   # Keystore credentials
 │   │
+│   ├── releases/                 # Versioned release APKs (tracked in git)
+│   │   ├── VERSION               # Current version number
+│   │   ├── CHANGELOG.md          # Release history
+│   │   └── {app}-v{X.Y.Z}.apk    # Release APKs
+│   │
 │   ├── skills/                   # Claude Code skills
 │   │   ├── app.md                # App lifecycle management
 │   │   ├── commit.md             # Intelligent commits
@@ -311,81 +316,82 @@ launchpad/
 | `/build clean` | 🧹 Clean build from scratch |
 | `/install` | 📲 Build and install to device/emulator |
 | `/run` | ▶️ Build, install, and launch the app |
-| `/release` | 📦 Build signed release APK |
+| `/release [version]` | 📦 Build, version, and publish signed release APK |
 | `/execute-prompt <file>` | 📜 Execute a prompt file with logging |
 
 ---
 
 ## 📦 Release Builds
 
-When you're ready to distribute your app, you'll need to create a signed release APK. This section covers keystore setup for both new and experienced Android developers.
+When you're ready to distribute your app, the `/release` command handles everything: versioning, building, storing the APK, updating the changelog, and committing to git.
 
 ### Quick Start
 
-```
-/release
+```bash
+/release              # Build with current version
+/release patch        # Bump patch: 1.0.0 → 1.0.1
+/release minor        # Bump minor: 1.0.0 → 1.1.0
+/release major        # Bump major: 1.0.0 → 2.0.0
+/release 2.0.0        # Set specific version
 ```
 
-The `/release` command will guide you through keystore setup if needed, then build your signed APK.
+### Version Management
+
+Releases use [Semantic Versioning](https://semver.org/):
+
+| Bump | When to Use | Example |
+|------|-------------|---------|
+| `patch` | Bug fixes, small improvements | 1.0.0 → 1.0.1 |
+| `minor` | New features, enhancements | 1.0.0 → 1.1.0 |
+| `major` | Breaking changes, redesigns | 1.0.0 → 2.0.0 |
+
+### Release Artifacts
+
+Each release creates versioned artifacts stored in `.claude/releases/`:
+
+```
+.claude/releases/
+├── VERSION                    # Current version (e.g., 1.0.0)
+├── CHANGELOG.md               # Release history
+├── {app-name}-v1.0.0.apk     # Versioned release APKs
+└── {app-name}-v1.0.1.apk
+```
+
+All release artifacts are tracked in git and pushed to remote.
 
 ---
 
-### Option A: I Have an Existing Keystore
+### Keystore Setup
 
-If you already have a `.jks` keystore file from previous Android development:
+Before your first release, set up your signing keystore:
 
-**Step 1: Copy your keystore**
+**Option A: Existing Keystore**
 ```bash
-# Copy your existing keystore to the project
+# Copy your keystore
 cp /path/to/your/existing.jks .claude/android-keystore/release.jks
-```
 
-**Step 2: Create credentials file**
-
-Create `.claude/android-keystore/keystore.properties`:
-```properties
+# Create credentials file
+cat > .claude/android-keystore/keystore.properties << EOF
 storeFile=../.claude/android-keystore/release.jks
-storePassword=your_keystore_password
-keyAlias=your_key_alias
+storePassword=your_password
+keyAlias=your_alias
 keyPassword=your_key_password
+EOF
 ```
 
-**Step 3: Build release**
-```
-/release
-```
-
----
-
-### Option B: I Need to Create a Keystore
-
-If this is your first Android app or you need a new keystore:
-
-**Step 1: Generate keystore**
-
-Open a terminal and run:
+**Option B: New Keystore**
 ```bash
-keytool -genkey -v -keystore .claude/android-keystore/release.jks -keyalg RSA -keysize 2048 -validity 10000 -alias release
-```
+# Generate keystore
+keytool -genkey -v -keystore .claude/android-keystore/release.jks \
+  -keyalg RSA -keysize 2048 -validity 10000 -alias release
 
-You'll be prompted for:
-- **Keystore password**: Choose a strong password (you'll need this forever!)
-- **Personal info**: Name, organization, etc. (can use defaults)
-- **Key password**: Can be the same as keystore password
-
-**Step 2: Create credentials file**
-
-Create `.claude/android-keystore/keystore.properties`:
-```properties
+# Create credentials file (use the passwords you just set)
+cat > .claude/android-keystore/keystore.properties << EOF
 storeFile=../.claude/android-keystore/release.jks
 storePassword=your_chosen_password
 keyAlias=release
 keyPassword=your_key_password
-```
-
-**Step 3: Build release**
-```
-/release
+EOF
 ```
 
 ---
@@ -394,17 +400,10 @@ keyPassword=your_key_password
 
 | Practice | Description |
 |----------|-------------|
-| **Back up your keystore** | Store your `.jks` file in a secure location (cloud backup, USB drive). If lost, you cannot update your app on Play Store. |
-| **Never commit credentials** | Keystore files are protected by both the root `.gitignore` and `.claude/android-keystore/.gitignore`. Never manually add these files to git. |
-| **Use strong passwords** | Your keystore protects your app's identity. Use passwords you won't forget but others can't guess. |
-| **Document your credentials** | Store your alias and passwords securely (password manager recommended). |
-
-### Output Location
-
-After a successful release build, your signed APK will be at:
-```
-app/build/outputs/apk/release/app-release.apk
-```
+| **Back up your keystore** | Store `.jks` in a secure location. If lost, you cannot update your app on Play Store. |
+| **Never commit credentials** | Keystore files are protected by `.gitignore`. Only APKs are committed. |
+| **Use strong passwords** | Your keystore protects your app's identity forever. |
+| **Document credentials** | Store alias and passwords in a password manager. |
 
 ---
 

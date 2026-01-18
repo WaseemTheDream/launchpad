@@ -1,12 +1,24 @@
 # Release Build
 
-Build a signed release APK for distribution.
+Build, version, and publish a signed release APK.
 
 ---
 
 ## Overview
 
-The **Release** command creates a signed release APK ready for distribution or Play Store upload. It handles keystore configuration, builds the release APK, and provides the output location.
+The **Release** command creates a signed release APK, stores it in the `.claude/releases/` folder with semantic versioning, updates the changelog, and commits everything to git. This provides a complete release management workflow.
+
+---
+
+## Usage
+
+```
+/release              # Build with current version
+/release patch        # Bump patch version: 1.0.0 → 1.0.1
+/release minor        # Bump minor version: 1.0.0 → 1.1.0
+/release major        # Bump major version: 1.0.0 → 2.0.0
+/release 2.1.0        # Set specific version
+```
 
 ---
 
@@ -78,21 +90,26 @@ Guide them to run this command in terminal:
 keytool -genkey -v -keystore .claude/android-keystore/release.jks -keyalg RSA -keysize 2048 -validity 10000 -alias release
 ```
 
-Explain:
-- They will be prompted for a keystore password (remember this!)
-- They will be prompted for personal info (can use defaults)
-- They will be prompted for a key password (can be same as keystore password)
+### Phase 3: Determine Version
 
-After creation, create `keystore.properties`:
+1. Read current version from `.claude/releases/VERSION`
+2. Parse the command argument:
+   - No argument: Use current version
+   - `patch`: Increment patch (1.0.0 → 1.0.1)
+   - `minor`: Increment minor, reset patch (1.0.1 → 1.1.0)
+   - `major`: Increment major, reset minor and patch (1.2.3 → 2.0.0)
+   - `X.Y.Z`: Use specific version provided
 
-```properties
-storeFile=../.claude/android-keystore/release.jks
-storePassword={their-password}
-keyAlias=release
-keyPassword={their-key-password}
+3. Display version info:
+```
+📋 Version Info:
+   Current: {current_version}
+   Release: {new_version}
 ```
 
-### Phase 3: Verify Gradle Configuration
+4. If version already exists (APK file present), warn and ask to confirm overwrite.
+
+### Phase 4: Verify Gradle Configuration
 
 Check if `app/build.gradle.kts` has the signingConfigs block. If not, add it:
 
@@ -134,7 +151,21 @@ android {
 }
 ```
 
-### Phase 4: Build Release APK
+### Phase 5: Update Version in build.gradle.kts
+
+Update the `versionName` in `app/build.gradle.kts` to match the release version:
+
+```kotlin
+defaultConfig {
+    // ...
+    versionName = "{new_version}"
+    // ...
+}
+```
+
+Also increment `versionCode` by 1.
+
+### Phase 6: Build Release APK
 
 Run the Gradle build command:
 
@@ -142,24 +173,83 @@ Run the Gradle build command:
 export JAVA_HOME="/c/Program Files/Android/Android Studio/jbr" && ./gradlew.bat assembleRelease
 ```
 
-### Phase 5: Report Results
+### Phase 7: Store Release APK
+
+1. Determine app name from package (e.g., `launchpad` from `com.example.launchpad`)
+2. Copy APK to releases folder:
+   ```bash
+   cp app/build/outputs/apk/release/app-release.apk .claude/releases/{app-name}-v{version}.apk
+   ```
+
+3. Update `.claude/releases/VERSION` with new version
+
+### Phase 8: Update Changelog
+
+Ask user for release notes using AskUserQuestion:
+- "What's included in this release? (brief description)"
+
+Update `.claude/releases/CHANGELOG.md`:
+
+```markdown
+## [X.Y.Z] - YYYY-MM-DD
+
+### Added/Changed/Fixed
+- {User's release notes}
+
+---
+```
+
+Insert this entry after the `## [Unreleased]` section.
+
+### Phase 9: Commit and Push
+
+Create a git commit with all release changes:
+
+```bash
+git add .claude/releases/ app/build.gradle.kts
+git commit -m "[NNNN] release: v{version}
+
+- Built signed release APK
+- {Brief release notes}
+
+Co-Authored-By: Claude <noreply@anthropic.com>"
+```
+
+Create a git tag:
+```bash
+git tag -a v{version} -m "Release v{version}"
+```
+
+Push to remote:
+```bash
+git push && git push --tags
+```
+
+### Phase 10: Report Results
 
 **On success:**
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-    ✅ RELEASE BUILD SUCCESSFUL
+    ✅ RELEASE v{version} PUBLISHED
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-📦 APK Location:
-   app/build/outputs/apk/release/app-release.apk
+📦 Release Artifacts:
+   APK: .claude/releases/{app-name}-v{version}.apk
+   Size: {file_size}
 
 📊 Build Info:
    • Package: {package name}
-   • Version: {version from build.gradle}
+   • Version: {version}
+   • Version Code: {version_code}
    • Signed: Yes (release keystore)
+
+📝 Git:
+   • Commit: {commit_hash}
+   • Tag: v{version}
+   • Pushed: Yes
 
 🚀 Next Steps:
    • Test the APK on a physical device
@@ -175,6 +265,41 @@ Display the error message and suggest fixes:
 - Missing keystore: Guide to setup
 - Invalid credentials: Ask user to verify keystore.properties
 - Build errors: Show error details
+
+---
+
+## Version Management
+
+### VERSION File
+
+The `.claude/releases/VERSION` file contains a single line with the current version:
+```
+1.0.0
+```
+
+### Semantic Versioning Rules
+
+| Bump Type | When to Use | Example |
+|-----------|-------------|---------|
+| `major` | Breaking changes, major redesigns | 1.2.3 → 2.0.0 |
+| `minor` | New features, enhancements | 1.2.3 → 1.3.0 |
+| `patch` | Bug fixes, small improvements | 1.2.3 → 1.2.4 |
+
+### Version Code
+
+The `versionCode` in build.gradle.kts is automatically incremented with each release. This is required for Play Store updates.
+
+---
+
+## Release Artifacts
+
+Each release creates these files (all tracked in git):
+
+| File | Purpose |
+|------|---------|
+| `.claude/releases/{app}-v{X.Y.Z}.apk` | Signed release APK |
+| `.claude/releases/VERSION` | Current version number |
+| `.claude/releases/CHANGELOG.md` | Release history |
 
 ---
 
@@ -203,3 +328,4 @@ IMPORTANT:
 - If keystore.properties has wrong path, help fix it
 - If passwords are wrong, ask user to re-enter them
 - If keystore is corrupted, guide to create new one (warn about consequences)
+- If version already exists, offer to overwrite or use different version

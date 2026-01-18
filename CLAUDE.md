@@ -58,6 +58,11 @@ launchpad/
 │   ├── android-keystore/         # Release signing (git-ignored)
 │   │   └── keystore.properties   # Keystore credentials
 │   │
+│   ├── releases/                 # Versioned release APKs (tracked in git)
+│   │   ├── VERSION               # Current version (e.g., 1.0.0)
+│   │   ├── CHANGELOG.md          # Release history
+│   │   └── {app}-v{X.Y.Z}.apk    # Release APKs
+│   │
 │   ├── skills/                   # Claude Code skills
 │   │   ├── app.md                # App lifecycle management
 │   │   ├── commit.md             # Intelligent commit with numbering
