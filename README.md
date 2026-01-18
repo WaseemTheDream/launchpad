@@ -141,7 +141,11 @@ You don't need any documentation prepared — Liftoff's interactive questionnair
 | `/liftoff` | **Product Ideation** | Define your app concept, features, and requirements |
 | `/forge` | **MVP Generation** | Build your complete working prototype |
 
-**Liftoff** is for ideation — whether you have an idea or not, it helps you think through and document every aspect of your product vision.
+**Liftoff** is for ideation and context gathering. It works great in both scenarios:
+- **With product docs**: Analyzes your documentation, identifies gaps, and asks targeted questions to fill them in
+- **Without product docs**: Guides you through comprehensive questions to define your entire product vision from scratch
+
+Either way, Liftoff ensures Claude has complete context about your app before building begins.
 
 **Forge** is for building — once your vision is defined, it creates a complete MVP proposal, reviews it with you, and builds the entire working app.
 
