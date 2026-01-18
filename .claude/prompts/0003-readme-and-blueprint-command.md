@@ -1,10 +1,10 @@
-# README and Liftoff Command
+# README and Blueprint Command
 
 [auto-commit]
 
 ## Task
 
-Create the project README.md and a powerful `/liftoff` command that helps users transform their product ideas into actionable Android projects.
+Create the project README.md and a powerful `/blueprint` command that helps users transform their product ideas into actionable Android projects.
 
 ## Requirements
 
@@ -66,15 +66,15 @@ Create your product documentation in the `product-docs/` folder:
 - `product-docs/design.md` - Design preferences and branding
 - Add any additional docs, wireframes, or references
 
-### Step 2: Initialize Your Project with Liftoff
+### Step 2: Initialize Your Project with Blueprint
 
 Once your product docs are in place, use Claude Code to run:
 
 ```
-/liftoff
+/blueprint
 ```
 
-The Liftoff command will:
+The Blueprint command will:
 - Analyze your product documentation
 - Ask clarifying questions about your vision
 - Generate context files for AI-assisted development
@@ -100,7 +100,7 @@ With your project initialized, use Claude Code to:
 | `/build` | Build the Android app |
 | `/install` | Build and install to device/emulator |
 | `/run` | Build, install, and launch the app |
-| `/liftoff` | Initialize project with your product vision |
+| `/blueprint` | Initialize project with your product vision |
 | `/execute-prompt <file>` | Execute a prompt file |
 
 ## 🤝 Contributing
@@ -127,11 +127,11 @@ The README.md inside product-docs should explain:
 - Examples of good product documentation
 - Tips for effective AI collaboration
 
-### 3. Create /liftoff Command
+### 3. Create /blueprint Command
 
-Create `.claude/commands/liftoff.md` - an inspiring command that transforms product docs into an initialized project.
+Create `.claude/commands/blueprint.md` - an inspiring command that transforms product docs into an initialized project.
 
-**The Liftoff command should:**
+**The Blueprint command should:**
 
 1. **Welcome & Introduction**
    - Display an inspiring welcome message
@@ -197,7 +197,7 @@ Create `.claude/commands/liftoff.md` - an inspiring command that transforms prod
    - Optionally update package name references
 
 7. **Commit Everything**
-   Create commit: `[NNNN] feat: Initialize {app-name} project with Liftoff`
+   Create commit: `[NNNN] feat: Initialize {app-name} project with Blueprint`
 
 8. **Next Steps**
    Display clear next steps for the user
@@ -206,9 +206,9 @@ Create `.claude/commands/liftoff.md` - an inspiring command that transforms prod
 
 - Professional README.md that welcomes users and explains the project
 - product-docs/ folder ready for user documentation
-- Powerful /liftoff command that transforms ideas into initialized projects
+- Powerful /blueprint command that transforms ideas into initialized projects
 - Seamless onboarding experience for new users
 
 ## Commit
 
-Commit: `[0003] feat: Add README and Liftoff command for project initialization`
+Commit: `[0003] feat: Add README and Blueprint command for project initialization`

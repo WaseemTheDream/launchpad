@@ -1,10 +1,10 @@
-# 🚀 Liftoff
+# 📐 Blueprint
 
-Transform your product vision into an initialized Android project.
+Design the foundation for your Android project.
 
 ## Overview
 
-Liftoff is your launch sequence for turning ideas into reality. It analyzes your product documentation, asks clarifying questions, and sets up your project with full AI context.
+Blueprint is your ideation and planning phase — where ideas take shape. It analyzes your product documentation, asks clarifying questions, and creates the architectural foundation for your app.
 
 ---
 
@@ -17,13 +17,13 @@ Display an inspiring welcome:
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-    🚀 L I F T O F F
+    📐 B L U E P R I N T
 
-    Initializing your Android project...
+    Designing your Android project...
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Welcome to Liftoff! I'm going to help you transform Launchpad into YOUR app.
+Welcome to Blueprint! I'm going to help you design the foundation for YOUR app.
 
 Here's what we'll do:
   1. 📖 Review your product documentation
@@ -336,16 +336,16 @@ Update the app name in `app/src/main/res/values/strings.xml`:
 
 ---
 
-### Phase 7: Create Liftoff Session Documentation
+### Phase 7: Create Blueprint Session Documentation
 
-Create a documentation prompt file that records the entire liftoff session.
+Create a documentation prompt file that records the entire blueprint session.
 
-Determine the next prompt number and create: `.claude/prompts/NNNN-liftoff-session-{app-name-slug}.md`
+Determine the next prompt number and create: `.claude/prompts/NNNN-blueprint-session-{app-name-slug}.md`
 
 ```markdown
-# Liftoff Session: {App Name}
+# Blueprint Session: {App Name}
 
-> Session documentation for the /liftoff command execution
+> Session documentation for the /blueprint command execution
 
 ## Session Info
 - **Date**: {current date/time}
@@ -460,7 +460,7 @@ The following files were created in `.claude/context/`:
 User selected: {their choice from the next steps options}
 
 ## Session Complete
-Liftoff session completed successfully. Project initialized for {App Name}.
+Blueprint session completed successfully. Project initialized for {App Name}.
 ```
 
 ---
@@ -473,7 +473,7 @@ Use the commit skill to commit all changes:
 2. Determine the next commit number
 3. Create commit message:
 ```
-[NNNN] feat: Initialize {App Name} project with Liftoff
+[NNNN] feat: Initialize {App Name} project with Blueprint
 
 - Add product vision and technical spec context files
 - Create feature roadmap and design guidelines
@@ -492,7 +492,7 @@ Co-Authored-By: Claude <noreply@anthropic.com>
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-    🎉 LIFTOFF COMPLETE!
+    🎉 BLUEPRINT COMPLETE!
 
     {App Name} is ready for development.
 
@@ -505,7 +505,7 @@ Co-Authored-By: Claude <noreply@anthropic.com>
    • .claude/context/design-guidelines.md
    • .claude/prompts/NNNN-initialize-{app-name}.md
 
-✅ Committed: [NNNN] feat: Initialize {App Name} project with Liftoff
+✅ Committed: [NNNN] feat: Initialize {App Name} project with Blueprint
 
 🚀 What's Next?
 ```

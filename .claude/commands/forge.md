@@ -13,7 +13,7 @@ The **Forge** command takes your product vision and crafts it into a complete, w
 ## Prerequisites
 
 Before running this command, ensure you have:
-1. Run `/liftoff` to set up your product context
+1. Run `/blueprint` to set up your product context
 2. Context files exist in `.claude/context/`
 3. An initialization prompt has been created
 
@@ -54,7 +54,7 @@ Loading your product context...
    Tech Stack: {Key technical decisions}
 ```
 
-If context files are missing, inform user to run `/liftoff` first.
+If context files are missing, inform user to run `/blueprint` first.
 
 ---
 
@@ -496,7 +496,7 @@ After MVP is built:
 
 - If build fails during implementation, fix errors before continuing
 - If user wants to stop partway, commit progress and save state
-- If context files are missing, offer to run `/liftoff` first
+- If context files are missing, offer to run `/blueprint` first
 - Always provide the option to review generated code before committing
 
 ---

@@ -103,13 +103,13 @@ product-docs/
 
 Don't worry about being perfect — even rough notes help Claude understand your vision.
 
-**Step 2:** Run Liftoff to initialize your project:
+**Step 2:** Run Blueprint to initialize your project:
 
 ```
-/liftoff
+/blueprint
 ```
 
-Liftoff will analyze your docs, ask clarifying questions, and set everything up.
+Blueprint will analyze your docs, ask clarifying questions, and set everything up.
 
 ---
 
@@ -118,10 +118,10 @@ Liftoff will analyze your docs, ask clarifying questions, and set everything up.
 Don't have a fully formed idea yet? No problem! Just run:
 
 ```
-/liftoff
+/blueprint
 ```
 
-**The Liftoff command will interactively help you:**
+**The Blueprint command will interactively help you:**
 
 1. 💡 **Brainstorm** your app concept through guided questions
 2. 🎯 **Define** your target audience and core features
@@ -130,7 +130,7 @@ Don't have a fully formed idea yet? No problem! Just run:
 5. 📝 **Create** an initialization prompt for your app
 6. ✅ **Commit** everything to get you started
 
-You don't need any documentation prepared — Liftoff's interactive questionnaire will guide you through defining your entire product vision from scratch.
+You don't need any documentation prepared — Blueprint's interactive questionnaire will guide you through defining your entire product vision from scratch.
 
 ---
 
@@ -138,14 +138,14 @@ You don't need any documentation prepared — Liftoff's interactive questionnair
 
 | Command | Purpose | When to Use |
 |---------|---------|-------------|
-| `/liftoff` | **Product Ideation** | Define your app concept, features, and requirements |
+| `/blueprint` | **Product Ideation** | Define your app concept, features, and requirements |
 | `/forge` | **MVP Generation** | Build your complete working prototype |
 
-**Liftoff** is for ideation and context gathering. It works great in both scenarios:
+**Blueprint** is for ideation and context gathering. It works great in both scenarios:
 - **With product docs**: Analyzes your documentation, identifies gaps, and asks targeted questions to fill them in
 - **Without product docs**: Guides you through comprehensive questions to define your entire product vision from scratch
 
-Either way, Liftoff ensures Claude has complete context about your app before building begins.
+Either way, Blueprint ensures Claude has complete context about your app before building begins.
 
 **Forge** is for building — once your vision is defined, it creates a complete MVP proposal, reviews it with you, and builds the entire working app.
 
@@ -153,7 +153,7 @@ Either way, Liftoff ensures Claude has complete context about your app before bu
 
 ### Step 3: Build Your MVP with Forge
 
-After Liftoff completes, run:
+After Blueprint completes, run:
 
 ```
 /forge
@@ -161,7 +161,7 @@ After Liftoff completes, run:
 
 **The Forge command will:**
 
-1. 📋 **Analyze** your context files from Liftoff
+1. 📋 **Analyze** your context files from Blueprint
 2. 🏗️ **Generate** a detailed MVP proposal (screens, architecture, data models)
 3. 👀 **Review** the proposal with you and incorporate feedback
 4. 🔥 **Build** the complete working prototype
@@ -204,7 +204,7 @@ launchpad/
 │   │   ├── build.md              # /build - Compile the app
 │   │   ├── install.md            # /install - Deploy to device
 │   │   ├── run.md                # /run - Build, install, launch
-│   │   ├── liftoff.md            # /liftoff - Initialize your project
+│   │   ├── blueprint.md            # /blueprint - Initialize your project
 │   │   └── execute-prompt.md     # /execute-prompt - Run prompt files
 │   │
 │   ├── skills/                   # Claude Code skills
@@ -227,7 +227,7 @@ launchpad/
 
 | Command | Description |
 |---------|-------------|
-| `/liftoff` | 🚀 Initialize project with your product vision |
+| `/blueprint` | 📐 Design your product vision and create project foundation |
 | `/forge` | 🔥 Generate and build your complete MVP |
 | `/build` | 🔨 Build the Android app |
 | `/build clean` | 🧹 Clean build from scratch |

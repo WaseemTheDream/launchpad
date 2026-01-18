@@ -126,9 +126,9 @@ Create a `references/` subfolder for:
 Once you have your documentation ready:
 
 1. Open Claude Code in your terminal
-2. Run the Liftoff command:
+2. Run the Blueprint command:
    ```
-   /liftoff
+   /blueprint
    ```
 3. Answer the questions Claude asks
 4. Let Claude set up your project
