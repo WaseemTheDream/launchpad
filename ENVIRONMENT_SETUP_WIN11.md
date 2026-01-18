@@ -2,6 +2,25 @@
 
 This guide walks you through setting up a complete Android development environment on Windows 11, including Android Studio, Git, Claude Code, and running your first app on an emulator.
 
+---
+
+## Overview
+
+| Section | What You'll Install | Purpose |
+|---------|---------------------|---------|
+| [1. Android Studio](#1-installing-android-studio) | Android Studio + SDK | IDE for Android development |
+| [2. Git](#2-installing-git) | Git for Windows | Version control |
+| [3. Claude Code](#3-installing-claude-code-for-windows) | Node.js + Claude Code CLI | AI-powered coding assistant |
+| [4. Claude Code Extension](#4-installing-the-claude-code-extension-for-android-studio) | Android Studio plugin | IDE integration for Claude |
+| [5. GitHub CLI](#5-installing-github-cli) | `gh` command-line tool | GitHub integration |
+| [6. Python](#6-installing-python-3) | Python 3 | Scripting and automation |
+| [7. Emulator Setup](#7-setting-up-an-emulator-and-running-the-launchpad-app) | Android Virtual Device | Run and test your app |
+| [8. Mobile MCP](#8-installing-mobile-mcp-for-claude-code) | Mobile MCP server | Device automation via Claude |
+
+**Estimated total setup time**: Follow sections 1-8 in order. Section 8 (running the app) confirms everything works.
+
+---
+
 ## Prerequisites
 
 - Windows 11 (64-bit)
@@ -183,6 +202,32 @@ npm --version
 ```
 
 You should see version numbers for both (Node.js 18+ and npm 9+).
+
+#### Troubleshooting: Node.js Not in PATH
+
+If you get `'node' is not recognized` or `command not found` errors, Node.js was installed but not added to your system PATH. This commonly happens with certain installation methods.
+
+**Manual Fix:**
+
+1. Press `Win + R`, type `sysdm.cpl`, press Enter
+2. Click the **Advanced** tab
+3. Click **Environment Variables**
+4. Under **System variables**, find **Path** and click **Edit**
+5. Click **New** and add: `C:\Program Files\nodejs`
+6. Click **OK** on all dialogs
+7. Close and reopen your terminal
+
+**Automated Fix (Run in PowerShell as Administrator):**
+
+```powershell
+[Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", "Machine") + ";C:\Program Files\nodejs", "Machine")
+```
+
+> **Note for Claude Code:** To fix PATH issues automatically, run this command:
+> ```
+> powershell.exe -Command "[Environment]::SetEnvironmentVariable('Path', [Environment]::GetEnvironmentVariable('Path', 'Machine') + ';C:\Program Files\nodejs', 'Machine')"
+> ```
+> After running, instruct the user to restart their terminal/Claude Code session for changes to take effect.
 
 ### Step 2: Install Claude Code
 
@@ -508,6 +553,8 @@ Now let's create an Android emulator and run the Launchpad app on it.
 
 ## 8. Installing Mobile MCP for Claude Code
 
+> **⚠️ Experimental on Windows 11**: Mobile MCP has not yet been proven to work reliably on Windows 11. You may encounter connection issues or other problems. This section is included for users who want to try it, but expect that it may not function as expected. The steps below are still recommended to attempt, as future updates may resolve compatibility issues.
+
 Mobile MCP is a Model Context Protocol server that enables mobile automation through Claude Code. It provides tools for device management, app operations, screen interaction, and input handling for both Android and iOS devices.
 
 ### Prerequisites
@@ -561,6 +608,25 @@ claude "Open the Settings app and navigate to Wi-Fi"
 - Ensure an emulator is running or device is connected
 - Verify with: `adb devices`
 - Restart Claude Code to reload MCP servers
+
+**Node.js not found / not in PATH:**
+- If `node --version` fails with "not recognized" or "command not found", Node.js is not in your system PATH
+- See [Troubleshooting: Node.js Not in PATH](#troubleshooting-nodejs-not-in-path) in Section 3
+- After fixing PATH, restart Claude Code completely for changes to take effect
+
+> **Note for Claude Code:** If mobile-mcp fails to connect, first check if Node.js is accessible:
+> ```
+> node --version
+> ```
+> If this fails, Node.js is likely installed but not in PATH. Check if it exists:
+> ```
+> ls "/c/Program Files/nodejs/node.exe" 2>/dev/null && echo "Node installed but not in PATH"
+> ```
+> If found, fix the PATH with:
+> ```
+> powershell.exe -Command "[Environment]::SetEnvironmentVariable('Path', [Environment]::GetEnvironmentVariable('Path', 'Machine') + ';C:\Program Files\nodejs', 'Machine')"
+> ```
+> Then instruct user to restart their terminal/Claude Code session.
 
 **Node.js version error:**
 - Mobile MCP requires Node.js v22+
