@@ -22,7 +22,8 @@
       "Bash(\"C:\\\\Users\\\\Waz\\\\AndroidStudioProjects\\\\launchpad\\\\gradlew.bat\" assembleDebug)",
       "Bash(export JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\")",
       "Bash(\"C:\\\\Users\\\\Waz\\\\AndroidStudioProjects\\\\launchpad\\\\gradlew.bat\" installDebug)",
-      "Bash(adb shell am start:*)"
+      "Bash(adb shell am start:*)",
+      "Bash(ls:*)"
     ]
   }
 }
