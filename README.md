@@ -7,14 +7,19 @@
 <table>
 <tr>
 <td align="center">
-<img src="docs/screenshots/home_screen.png" width="280" alt="Home Screen"/>
+<img src="docs/screenshots/home_screen.png" width="250" alt="Home Screen"/>
 <br/>
 <sub><b>Home Screen</b></sub>
 </td>
 <td align="center">
-<img src="docs/screenshots/commands_screen.png" width="280" alt="Commands Screen"/>
+<img src="docs/screenshots/commands_screen.png" width="250" alt="Commands Screen"/>
 <br/>
 <sub><b>Commands Reference</b></sub>
+</td>
+<td align="center">
+<img src="docs/screenshots/command_source_screen.png" width="250" alt="Command Source"/>
+<br/>
+<sub><b>Command Source View</b></sub>
 </td>
 </tr>
 </table>
