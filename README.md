@@ -68,7 +68,9 @@ Whether you're prototyping a new idea, building an MVP, or creating a full-featu
 
 **macOS**
 
-🚧 Coming Soon
+✅ Available
+
+[Setup Guide](./ENVIRONMENT_SETUP_MACOS.md)
 
 </td>
 <td width="33%" align="center">
