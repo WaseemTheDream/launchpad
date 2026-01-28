@@ -17,7 +17,7 @@ Execute all queued tasks sequentially, like a rocket burn clearing the launchpad
 
 ## What Burn Does
 
-Burn processes every task in `.claude/queue.md`, executing them one by one using the Ship workflow (implement → document → commit). Think of it as a sustained rocket burn that propels you through your backlog.
+Burn processes every task in `.claude/queue.md`, executing them one by one using the Ship workflow (implement → document → commit → push). Think of it as a sustained rocket burn that propels you through your backlog.
 
 **Key feature**: Creates a progress log that enables resumption if Claude is interrupted mid-burn.
 
@@ -93,6 +93,7 @@ For each pending task:
    - Implement changes
    - Create prompt documentation
    - Commit with numbered message
+   - Push to remote
 4. Mark task as completed in progress log: `- [x] Task N: {description} → [NNNN]`
 5. Mark task as completed in queue file:
    - Change `- [ ]` to `- [x]`
@@ -198,10 +199,11 @@ Use `/reboot {session_id}` to continue the burn from where it stopped.
 
 | Option | Description |
 |--------|-------------|
-| `/burn` | Execute all pending tasks |
+| `/burn` | Execute all pending tasks (commits and pushes each) |
 | `/burn --dry-run` | Preview tasks without executing |
 | `/burn --first` | Execute only the first task |
 | `/burn --skip-failed` | Auto-skip failed tasks |
+| `/burn --no-push` | Commit but don't push to remote |
 
 ## Queue File Updates
 

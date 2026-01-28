@@ -25,6 +25,7 @@ Ship is your end-to-end change execution skill. When invoked, it:
 3. **Implements** the changes
 4. **Documents** the work (creates a prompt file)
 5. **Commits** with auto-numbered commit message
+6. **Pushes** to remote (by default)
 
 Think of it as: **Blueprint** plans → **Forge** builds → **Ship** delivers.
 
@@ -62,7 +63,7 @@ When the user invokes `/ship <request>`, follow this workflow:
 - [ ] Phase 1: Understand request
 - [ ] Phase 2: Implement changes
 - [ ] Phase 3: Document work
-- [ ] Phase 4: Commit changes
+- [ ] Phase 4: Commit and push changes
 
 ## Execution Log
 [{timestamp}] Starting ship: {request}
@@ -118,7 +119,7 @@ Create a prompt file to document what was done:
 4. Log: `[{timestamp}] Created prompt file: {path}`
 5. Check checkbox: `- [x] Phase 3: Document work`
 
-### Phase 4: Commit the Changes
+### Phase 4: Commit and Push the Changes
 
 1. Log: `[{timestamp}] Preparing commit`
 2. Determine the next commit number:
@@ -146,8 +147,14 @@ Create a prompt file to document what was done:
    Co-Authored-By: Claude <noreply@anthropic.com>"
    ```
 
-5. Log: `[{timestamp}] Committed: [NNNN] @ {hash}`
-6. Check checkbox: `- [x] Phase 4: Commit changes`
+5. Push to remote:
+   ```
+   git push
+   ```
+   - If no upstream, use: `git push -u origin {branch}`
+
+6. Log: `[{timestamp}] Committed: [NNNN] @ {hash}, pushed to remote`
+7. Check checkbox: `- [x] Phase 4: Commit and push changes`
 
 ### Phase 5: Finalize Progress Log
 
@@ -160,6 +167,7 @@ Create a prompt file to document what was done:
 - **Completed**: {timestamp}
 - **Status**: COMPLETED
 - **Commit**: [NNNN] @ {hash}
+- **Pushed**: Yes
 - **Files Modified**: {count}
 - **Files Created**: {count}
 - **Prompt File**: {path}
@@ -171,6 +179,7 @@ Provide a brief summary to the user:
 - What was changed
 - Prompt file created
 - Commit number and hash
+- Push status
 - Any follow-up suggestions
 
 ## Progress Log Format
@@ -201,7 +210,7 @@ The progress log at `.claude/prompts/logs/ship_{NNNN}_{timestamp}.md` contains:
 - [x] Phase 1: Understand request
 - [x] Phase 2: Implement changes
 - [ ] Phase 3: Document work
-- [ ] Phase 4: Commit changes
+- [ ] Phase 4: Commit and push changes
 
 ## Execution Log
 [14:30:52] Starting ship: Add dark mode toggle to settings
@@ -217,7 +226,7 @@ The progress log at `.claude/prompts/logs/ship_{NNNN}_{timestamp}.md` contains:
 To continue this work, run: /reboot ship_0015_20260117_143052
 Remaining tasks:
 - Create prompt documentation file
-- Commit changes with message about dark mode
+- Commit and push changes with message about dark mode
 ```
 
 ## Resumption Support
@@ -242,8 +251,9 @@ Use `/reboot {session_id}` to continue interrupted work.
 5. Adds FloatingActionButton to the home screen composable
 6. Creates `.claude/prompts/0012-add-floating-action-button.md`
 7. Commits as `[0012] feat: Add floating action button to home screen`
-8. Updates progress log status to COMPLETED
-9. Reports: "Shipped! Added FAB to HomeScreen. Commit [0012] @ abc123"
+8. Pushes to remote
+9. Updates progress log status to COMPLETED
+10. Reports: "Shipped! Added FAB to HomeScreen. Commit [0012] @ abc123, pushed to origin/master"
 
 ## Voice Invocation Tips
 
@@ -259,7 +269,8 @@ Ship is designed for natural voice commands:
 
 ## Options
 
-- `/ship --no-commit <request>` — Make changes but don't commit
+- `/ship --no-commit <request>` — Make changes but don't commit (also skips push)
+- `/ship --no-push <request>` — Commit but don't push to remote
 - `/ship --no-doc <request>` — Skip creating prompt documentation
 - `/ship --dry-run <request>` — Show what would be done without doing it
 
@@ -274,7 +285,8 @@ Ship is designed for natural voice commands:
 ## Quick Reference
 
 ```
-/ship <request>           # Full flow: implement → document → commit
+/ship <request>           # Full flow: implement → document → commit → push
+/ship --no-push <req>     # Commit but don't push
 /ship --no-commit <req>   # Implement and document only
 /ship --dry-run <req>     # Preview what would happen
 ```
